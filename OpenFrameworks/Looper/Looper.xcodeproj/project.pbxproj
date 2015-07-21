@@ -56,9 +56,9 @@
 		ADE367465D2A8EBAD4C7A8D9 /* IpEndpointName.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ADD194746185E2DA11468377 /* IpEndpointName.cpp */; };
 		ADE7C2AFC51E3F7E5E389026 /* ofxUISortableList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5613D5D24B00D8AD909F7E6A /* ofxUISortableList.cpp */; };
 		AE281BEBF3A00F1FC37F3DA0 /* ofxUIWaveform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9345327AA463407B3DADBADE /* ofxUIWaveform.cpp */; };
-		B0ADE5391B5B07F1007FD915 /* SuperCollider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0ADE5351B5B07F1007FD915 /* SuperCollider.cpp */; };
-		B0ADE53A1B5B07F1007FD915 /* SuperColliderUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0ADE5371B5B07F1007FD915 /* SuperColliderUI.cpp */; };
-		B0ADE5461B5C56A4007FD915 /* SuperColliderLooper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0ADE5441B5C56A4007FD915 /* SuperColliderLooper.cpp */; };
+		B0B002971B5EBF9C0021D824 /* SuperCollider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0B002911B5EBF9C0021D824 /* SuperCollider.cpp */; };
+		B0B002981B5EBF9C0021D824 /* SuperColliderLooper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0B002931B5EBF9C0021D824 /* SuperColliderLooper.cpp */; };
+		B0B002991B5EBF9C0021D824 /* SuperColliderUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0B002951B5EBF9C0021D824 /* SuperColliderUI.cpp */; };
 		BB896DB80D22F8F1CAAC31B5 /* ofxSCBus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E140AE13532DC8E2A04D7940 /* ofxSCBus.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		BFEFCE32DAFE10A8EB519F6C /* ofxUISpacer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30CBAAEC78A0E9EBBB10A05A /* ofxUISpacer.cpp */; };
@@ -234,12 +234,12 @@
 		ADD194746185E2DA11468377 /* IpEndpointName.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = IpEndpointName.cpp; path = ../../../addons/ofxOsc/libs/oscpack/src/ip/IpEndpointName.cpp; sourceTree = SOURCE_ROOT; };
 		AE335EB4709BFD4671EEAC84 /* MessageMappingOscPacketListener.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = MessageMappingOscPacketListener.h; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/MessageMappingOscPacketListener.h; sourceTree = SOURCE_ROOT; };
 		AEFCF7E549ACA862C022AD40 /* ofxUIDefines.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxUIDefines.h; path = ../../../addons/ofxUI/src/ofxUIDefines.h; sourceTree = SOURCE_ROOT; };
-		B0ADE5351B5B07F1007FD915 /* SuperCollider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SuperCollider.cpp; path = ../../src/SuperCollider.cpp; sourceTree = "<group>"; };
-		B0ADE5361B5B07F1007FD915 /* SuperCollider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuperCollider.h; path = ../../src/SuperCollider.h; sourceTree = "<group>"; };
-		B0ADE5371B5B07F1007FD915 /* SuperColliderUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SuperColliderUI.cpp; path = ../../src/SuperColliderUI.cpp; sourceTree = "<group>"; };
-		B0ADE5381B5B07F1007FD915 /* SuperColliderUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuperColliderUI.h; path = ../../src/SuperColliderUI.h; sourceTree = "<group>"; };
-		B0ADE5441B5C56A4007FD915 /* SuperColliderLooper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SuperColliderLooper.cpp; path = ../../src/SuperColliderLooper.cpp; sourceTree = "<group>"; };
-		B0ADE5451B5C56A4007FD915 /* SuperColliderLooper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuperColliderLooper.h; path = ../../src/SuperColliderLooper.h; sourceTree = "<group>"; };
+		B0B002911B5EBF9C0021D824 /* SuperCollider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SuperCollider.cpp; path = "../../../../../Code/of_v0.8-4.4_osx_release/of-tools/SuperCollider/src/SuperCollider.cpp"; sourceTree = "<group>"; };
+		B0B002921B5EBF9C0021D824 /* SuperCollider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuperCollider.h; path = "../../../../../Code/of_v0.8-4.4_osx_release/of-tools/SuperCollider/src/SuperCollider.h"; sourceTree = "<group>"; };
+		B0B002931B5EBF9C0021D824 /* SuperColliderLooper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SuperColliderLooper.cpp; path = "../../../../../Code/of_v0.8-4.4_osx_release/of-tools/SuperCollider/src/SuperColliderLooper.cpp"; sourceTree = "<group>"; };
+		B0B002941B5EBF9C0021D824 /* SuperColliderLooper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuperColliderLooper.h; path = "../../../../../Code/of_v0.8-4.4_osx_release/of-tools/SuperCollider/src/SuperColliderLooper.h"; sourceTree = "<group>"; };
+		B0B002951B5EBF9C0021D824 /* SuperColliderUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SuperColliderUI.cpp; path = "../../../../../Code/of_v0.8-4.4_osx_release/of-tools/SuperCollider/src/SuperColliderUI.cpp"; sourceTree = "<group>"; };
+		B0B002961B5EBF9C0021D824 /* SuperColliderUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuperColliderUI.h; path = "../../../../../Code/of_v0.8-4.4_osx_release/of-tools/SuperCollider/src/SuperColliderUI.h"; sourceTree = "<group>"; };
 		B21E7E5F548EEA92F368040B /* tinyxml.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = tinyxml.h; path = ../../../addons/ofxXmlSettings/libs/tinyxml.h; sourceTree = SOURCE_ROOT; };
 		B31C608870ECEB2490A93736 /* ofxOscParameterSync.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxOscParameterSync.h; path = ../../../addons/ofxOsc/src/ofxOscParameterSync.h; sourceTree = SOURCE_ROOT; };
 		B3CA0202B1A3B6D8920C2B15 /* ofxUIButton.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxUIButton.h; path = ../../../addons/ofxUI/src/ofxUIButton.h; sourceTree = SOURCE_ROOT; };
@@ -438,15 +438,15 @@
 			name = ofxUI;
 			sourceTree = "<group>";
 		};
-		B0ADE5341B5B07E4007FD915 /* SuperCollider */ = {
+		B0B002901B5EBF950021D824 /* SuperCollider */ = {
 			isa = PBXGroup;
 			children = (
-				B0ADE5351B5B07F1007FD915 /* SuperCollider.cpp */,
-				B0ADE5361B5B07F1007FD915 /* SuperCollider.h */,
-				B0ADE5371B5B07F1007FD915 /* SuperColliderUI.cpp */,
-				B0ADE5381B5B07F1007FD915 /* SuperColliderUI.h */,
-				B0ADE5441B5C56A4007FD915 /* SuperColliderLooper.cpp */,
-				B0ADE5451B5C56A4007FD915 /* SuperColliderLooper.h */,
+				B0B002911B5EBF9C0021D824 /* SuperCollider.cpp */,
+				B0B002921B5EBF9C0021D824 /* SuperCollider.h */,
+				B0B002931B5EBF9C0021D824 /* SuperColliderLooper.cpp */,
+				B0B002941B5EBF9C0021D824 /* SuperColliderLooper.h */,
+				B0B002951B5EBF9C0021D824 /* SuperColliderUI.cpp */,
+				B0B002961B5EBF9C0021D824 /* SuperColliderUI.h */,
 			);
 			name = SuperCollider;
 			sourceTree = "<group>";
@@ -694,7 +694,7 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				B0ADE5341B5B07E4007FD915 /* SuperCollider */,
+				B0B002901B5EBF950021D824 /* SuperCollider */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
@@ -828,7 +828,7 @@
 				5864AD82E20F15536D054EA3 /* ofxOscMessage.cpp in Sources */,
 				4ADB88E2FB52E76A471065DE /* ofxOscParameterSync.cpp in Sources */,
 				640279EE111671BD026CB013 /* ofxOscReceiver.cpp in Sources */,
-				B0ADE5391B5B07F1007FD915 /* SuperCollider.cpp in Sources */,
+				B0B002971B5EBF9C0021D824 /* SuperCollider.cpp in Sources */,
 				8F5205AEF8861EF234F0651A /* ofxOscSender.cpp in Sources */,
 				ADE367465D2A8EBAD4C7A8D9 /* IpEndpointName.cpp in Sources */,
 				67FE4C7B15C2F0478C8126C2 /* NetworkingUtils.cpp in Sources */,
@@ -859,11 +859,13 @@
 				7BE46522B64E24FAEDE1A25D /* ofxUICanvas.cpp in Sources */,
 				DF0C851B244C4C867CEA8806 /* ofxUICircleSlider.cpp in Sources */,
 				9BE4AE0AA2B8C436BDFE9D4D /* ofxUIDragableLabelButton.cpp in Sources */,
+				B0B002991B5EBF9C0021D824 /* SuperColliderUI.cpp in Sources */,
 				F392A99D83698FC099127880 /* ofxUIDropDownList.cpp in Sources */,
 				084025DA517D8329301FE1B6 /* ofxUIEventArgs.cpp in Sources */,
 				7252706DA14C1BE63950ADDA /* ofxUIFPS.cpp in Sources */,
 				22030CBDCC25D815E7ED6757 /* ofxUIFPSSlider.cpp in Sources */,
 				3D4EA8E172D3E4A30FEFA969 /* ofxUIImage.cpp in Sources */,
+				B0B002981B5EBF9C0021D824 /* SuperColliderLooper.cpp in Sources */,
 				7F2CD93F681F3C1547B3BF2C /* ofxUIImageButton.cpp in Sources */,
 				FBD0CD0AFE3849C14E829CAF /* ofxUIImageSampler.cpp in Sources */,
 				26874B150C8535AEA0F24C8C /* ofxUIImageSlider.cpp in Sources */,
@@ -890,11 +892,9 @@
 				C961BE22AB9A8CCF037FC18F /* ofxUITextArea.cpp in Sources */,
 				F8D05F7C7F785CE323983B47 /* ofxUITextInput.cpp in Sources */,
 				04C82720B149CE576B8CBB06 /* ofxUIToggle.cpp in Sources */,
-				B0ADE5461B5C56A4007FD915 /* SuperColliderLooper.cpp in Sources */,
 				E3A1109F67D711D6C256031E /* ofxUIToggleMatrix.cpp in Sources */,
 				60012C723B05938A3D388335 /* ofxUIValuePlotter.cpp in Sources */,
 				AE281BEBF3A00F1FC37F3DA0 /* ofxUIWaveform.cpp in Sources */,
-				B0ADE53A1B5B07F1007FD915 /* SuperColliderUI.cpp in Sources */,
 				82845E1F8C90E1F5A99D9868 /* ofxUIWidget.cpp in Sources */,
 				CE5D89B9893EAA12F511DCAC /* ofxUIWidgetWithLabel.cpp in Sources */,
 			);
