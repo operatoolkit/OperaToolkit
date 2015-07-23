@@ -3,12 +3,15 @@
 
 ### amplitude_following
 
+sketch for amplitude following
 
 ### grain_envelopes
 
+create grains from a buffer, modulate grain parameters
 
 ### loopstation
 
+prototype workflow: record into a buffer, view waveform, select clip within waveform, sequence selected clip
 
 ## Tools
 
@@ -27,3 +30,6 @@ three methods for sending a bang upon detecting an onset
 (work in progress) using onset/offset detection to automatically capture an isolated sound event into a buffer
 
 
+### masterDAC
+
+DAC with master fader and record
