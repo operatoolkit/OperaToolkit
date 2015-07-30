@@ -44,3 +44,7 @@ record sound into a buffer, set grain parameters, create envelopes for a grain, 
 ### quick_sing
 
 quickly be able to monitor and record an audio input
+
+### receive_oF
+
+patch to receive select and parse OSC data from openFrameworks apps. currently set up to receive keypoint data
