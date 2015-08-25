@@ -8,6 +8,7 @@ chordOver = false;
 var chord = [];
 var lastChord = [];
 var velocity;
+var index = 0;
 
 function msg_int(a) {
 	if (inlet == 0) {
@@ -26,7 +27,7 @@ function msg_int(a) {
 		// check for repeat 0 velocity
 		// first non 0 velocity after the zeros is where to make chordover false
 		var newVelocity = a;
-		post("new velocity" + newVelocity);
+		post("new velocity: " + newVelocity);
 		post();
 		if (newVelocity == velocity && velocity == 0) {
 			velocity = newVelocity;
@@ -47,7 +48,7 @@ function msg_int(a) {
 			post();
 			post("final chord: " + chord);
 			post();
-			lastChord = chord;
+			lastChord = chord.slice();
 			post("move final chord to lastChord: " + lastChord);
 			post();
 			chord.length = 0;
@@ -65,5 +66,10 @@ function bang() {
 	// go thru even, then odd items in array
 	// repeat array notes a specified number of times
 	// play two notes at a time
-
+if (index < (lastChord.length-1)) {
+	index++;
+} else {
+	index = 0;
+}
+outlet(0, lastChord[index]);
 }
