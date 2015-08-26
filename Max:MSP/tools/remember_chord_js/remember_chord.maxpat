@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 262.0, 45.0, 579.0, 586.0 ],
+		"rect" : [ 201.0, 45.0, 727.0, 610.0 ],
 		"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
 		"editing_bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
 		"bglocked" : 0,
@@ -40,12 +40,90 @@
 		"subpatcher_template" : "Max5_Style",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-21",
+					"linecount" : 4,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 435.0, 37.0, 192.0, 60.0 ],
+					"style" : "",
+					"text" : "functions like an arpeggiator; saves the last chord into an array and plays back with several options"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-11",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 435.0, 15.0, 150.0, 20.0 ],
+					"style" : "",
+					"text" : "REMEMBER CHORD"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-5",
+					"linecount" : 2,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 346.0, 165.0, 150.0, 33.0 ],
+					"style" : "",
+					"text" : "change this for different options, 0-4"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-24",
+					"linecount" : 3,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 271.0, 375.0, 150.0, 47.0 ],
+					"style" : "",
+					"text" : "note length as a percentage of arpeggiator speed"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"format" : 6,
+					"id" : "obj-15",
+					"maxclass" : "flonum",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "bang" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 210.5, 372.5, 50.0, 22.0 ],
+					"style" : ""
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-8",
+					"maxclass" : "number",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "bang" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 271.0, 166.0, 50.0, 22.0 ],
+					"style" : ""
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-25",
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 285.0, 90.0, 29.5, 22.0 ],
+					"patching_rect" : [ 256.0, 60.0, 29.5, 22.0 ],
 					"style" : "",
 					"text" : "50"
 				}
@@ -58,7 +136,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 285.0, 60.0, 60.0, 22.0 ],
+					"patching_rect" : [ 256.0, 30.0, 60.0, 22.0 ],
 					"style" : "",
 					"text" : "loadbang"
 				}
@@ -71,7 +149,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 98.75, 450.0, 29.5, 22.0 ],
+					"patching_rect" : [ 144.75, 465.0, 29.5, 22.0 ],
 					"style" : "",
 					"text" : "0"
 				}
@@ -83,10 +161,10 @@
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 1,
-					"outlettype" : [ "int" ],
-					"patching_rect" : [ 240.0, 345.0, 29.5, 22.0 ],
+					"outlettype" : [ "float" ],
+					"patching_rect" : [ 173.5, 405.0, 35.0, 22.0 ],
 					"style" : "",
-					"text" : "/ 2"
+					"text" : "* 0.5"
 				}
 
 			}
@@ -97,7 +175,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 98.75, 420.0, 39.0, 22.0 ],
+					"patching_rect" : [ 144.75, 435.0, 39.0, 22.0 ],
 					"style" : "",
 					"text" : "delay"
 				}
@@ -110,7 +188,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 90.0, 390.0, 29.5, 22.0 ],
+					"patching_rect" : [ 136.0, 405.0, 29.5, 22.0 ],
 					"style" : "",
 					"text" : "60"
 				}
@@ -124,7 +202,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 285.0, 120.0, 50.0, 22.0 ],
+					"patching_rect" : [ 256.0, 90.0, 50.0, 22.0 ],
 					"style" : ""
 				}
 
@@ -135,7 +213,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 3,
 					"numoutlets" : 0,
-					"patching_rect" : [ 45.0, 525.0, 51.0, 22.0 ],
+					"patching_rect" : [ 105.0, 540.0, 51.0, 22.0 ],
 					"style" : "",
 					"text" : "noteout"
 				}
@@ -149,7 +227,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 60.0, 330.0, 50.0, 22.0 ],
+					"patching_rect" : [ 106.0, 345.0, 50.0, 22.0 ],
 					"style" : ""
 				}
 
@@ -163,7 +241,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 210.0, 120.0, 24.0, 24.0 ],
+					"patching_rect" : [ 226.0, 90.0, 24.0, 24.0 ],
 					"style" : "",
 					"uncheckedcolor" : [ 0.862745, 0.870588, 0.878431, 1.0 ]
 				}
@@ -176,7 +254,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 210.0, 165.0, 41.0, 22.0 ],
+					"patching_rect" : [ 226.0, 135.0, 41.0, 22.0 ],
 					"style" : "",
 					"text" : "metro"
 				}
@@ -189,21 +267,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 210.0, 195.0, 24.0, 24.0 ],
+					"patching_rect" : [ 226.0, 165.0, 24.0, 24.0 ],
 					"style" : ""
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-10",
-					"linecount" : 3,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 300.0, 183.5, 150.0, 47.0 ],
-					"style" : "",
-					"text" : "add a chord buffer variable? how many chords to remember?"
 				}
 
 			}
@@ -215,7 +280,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 60.0, 195.0, 50.0, 22.0 ],
+					"patching_rect" : [ 106.0, 165.0, 50.0, 22.0 ],
 					"style" : ""
 				}
 
@@ -228,7 +293,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 125.0, 195.0, 50.0, 22.0 ],
+					"patching_rect" : [ 166.0, 165.0, 50.0, 22.0 ],
 					"style" : ""
 				}
 
@@ -240,7 +305,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "int", "int", "int" ],
-					"patching_rect" : [ 120.0, 120.0, 60.0, 22.0 ],
+					"patching_rect" : [ 106.0, 120.0, 60.0, 22.0 ],
 					"style" : "",
 					"text" : "notein"
 				}
@@ -250,10 +315,10 @@
 				"box" : 				{
 					"id" : "obj-1",
 					"maxclass" : "newobj",
-					"numinlets" : 3,
+					"numinlets" : 4,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 60.0, 285.0, 126.0, 22.0 ],
+					"patching_rect" : [ 106.0, 300.0, 126.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"filename" : "remember_chord.js",
 						"parameter_enable" : 0
@@ -298,6 +363,15 @@
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-13", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-20", 1 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-15", 0 ]
 				}
 
 			}
@@ -424,6 +498,15 @@
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-7", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-1", 3 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-8", 0 ]
 				}
 
 			}
