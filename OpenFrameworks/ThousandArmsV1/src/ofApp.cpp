@@ -26,7 +26,7 @@ void ofApp::setup() {
     gui.setPosition(660, 20);
     gui.setName("ThousandArms");
     gui.add(appFrameSkip.set("app frame skip", 1, 1, 30));
-    gui.add(debug.set("debug", false));
+    gui.add(debug.set("debug", true));
     gui.add(recording.set("recording", true));
     gui.add(totalNumImages.set("total number images", 300, 100, 500));
     gui.add(nearThreshold.set("near threshold", 255, 0, 255));
@@ -39,8 +39,17 @@ void ofApp::setup() {
     gui.add(scale.set("scale", ofVec2f(1, 1), ofVec2f(1, 1), ofVec2f(5, 5)));
 
     indexImage = 0;
+    indexDraw = -1;
 
     projector.setup("projector", 0, 0, 1280, 800, false);
+    
+    fbo.resize(totalNumImages);
+    for (int i=0; i<fbo.size(); i++) {
+        fbo[i].allocate(kinect.getWidth(), kinect.getHeight());
+        fbo[i].begin();
+        ofClear(0, 0);
+        fbo[i].end();
+    }
 }
 
 //--------------------------------------------------------------
@@ -59,10 +68,9 @@ void ofApp::update() {
     
         if (recording) {
         
+            indexDraw = (indexDraw + 1) % fbo.size();
             // add a new texture to the history
-            ofFbo newFbo;
-            newFbo.allocate(kinect.getWidth(), kinect.getHeight());
-            newFbo.begin();
+            fbo[indexDraw].begin();
             ofClear(0, 0);
 
             // draw graphics from the mask
@@ -74,31 +82,33 @@ void ofApp::update() {
             // draw the mask
             masker.beginMask();
             ofClear(0, 0, 0, 255);
-            grayImage.draw(0, 0, newFbo.getWidth(), newFbo.getHeight());
+            grayImage.draw(0, 0, fbo[indexDraw].getWidth(), fbo[indexDraw].getHeight());
             masker.endMask();
             
             //Draw the combined result into the fbo
             masker.draw();
 
-            newFbo.end();
+            fbo[indexDraw].end();
             
-            fbo.push_back(newFbo);
+            
         }
     }
     
-    
+    /*
     while (fbo.size() > totalNumImages) {
+        fbo[0].allocate(0, 0);
         fbo.erase(fbo.begin());
-    }
+    }*/
     
 }
 
 //--------------------------------------------------------------
 void ofApp::draw() {
 
-    if (debug && fbo.size() > 0) {
+    if (debug && indexDraw >= 0) {
         ofBackground(0);
-        fbo[fbo.size()-1].draw(0, 0);
+        kinect.drawDepth(640, 0);
+        fbo[indexDraw].draw(0, 0);
     }
     gui.draw();
     
@@ -115,6 +125,11 @@ void ofApp::draw() {
         for (int i=0; i < numImages; i++)
         {
             int idx = (indexImage + i * imageSkip) % fbo.size();
+            
+            ofSetColor(ofMap(sin(0.011*ofGetFrameNum()+5 + 4*i), -1, 1, 0, 255),
+                       ofMap(sin(0.013*ofGetFrameNum()+10 + 5*i), -1, 1, 0, 255),
+                       ofMap(sin(0.017*ofGetFrameNum()+20 + 6*i), -1, 1, 0, 255));
+            
             fbo[idx].draw(0, 0);
         }
         indexImage = (indexImage + frameSkip) % fbo.size();

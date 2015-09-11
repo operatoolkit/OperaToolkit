@@ -50,4 +50,5 @@ public:
     ofxPanel gui;
     
     int indexImage;
+    int indexDraw;
 };
