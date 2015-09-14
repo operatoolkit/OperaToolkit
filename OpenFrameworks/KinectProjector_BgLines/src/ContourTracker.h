@@ -14,6 +14,21 @@ using namespace ofxCv;
 using namespace cv;
 
 
+struct Contour
+{
+    Contour(vector<ofVec2f> & points, ofPoint center, int label);
+    void setPoints(vector<ofVec2f> & points, ofPoint center);
+    void draw();
+    int getNumPoints();
+    
+    vector<ofVec2f> points;
+    ofPoint center;
+    int label;
+    int age;
+    ofColor color;
+};
+
+
 class ContourTracker {
 public:
     void setup();

@@ -46,19 +46,16 @@ private:
     ofParameter<float> maxArea;
     ofParameter<int> smoothness;
     
-    // bg lines
-    ofParameter<int> mode;
+    map<int, Contour*> users;
+    
     ofParameter<float> refreshAlpha;
     ofParameter<ofColor> color;
     ofParameter<int> skip;
     ofParameter<int> numPoints;
-    ofParameter<bool> horiz;
-    ofParameter<float> mult;
     ofParameter<float> offset;
     ofParameter<float> strokeWeight;
     ofParameter<float> alpha;
-    
+    ofParameter<float> lerpRate;
+    ofParameter<float> dilation;
     vector<ofPoint> points;
-    float lerpRate;
-
 };

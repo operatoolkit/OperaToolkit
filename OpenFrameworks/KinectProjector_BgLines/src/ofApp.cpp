@@ -9,6 +9,7 @@ void ofApp::setup() {
     //kinect.setup();
     kinect.setupFromONI("/Users/gene/Code/of_v0.8-4.4_osx_release/templates_old/Kinect/openni_oniRecording/bin/data/alecsroom.oni");
     //kinect.setupFromONI("/Users/gene/Desktop/oni/2012-06-25-14-08-00-860.oni");
+    
     kinect.addImageGenerator();
     kinect.addDepthGenerator();
     kinect.addUserGenerator();
@@ -31,21 +32,17 @@ void ofApp::setup() {
     
     // setup gui
     gui.setup("backgrounding");
-    
-    gui.add(mode.set("mode", &mode, 0, 6);
-    gui.add(color.set("color", &color);
-    gui.add(refreshAlpha.set("refreshAlpha", &refreshAlpha, 0.0f, 255.0f);
-    gui.add(skip.set("skip", &skip, 1, 30);
-    gui.add(numPoints.set("numPoints", &numPoints, 1, 300);
-    gui.add(horiz.set("horizontal", &horiz);
-    gui.add(mult.set("mult", &mult, 0.0f, 30.0f);
-    gui.add(offset.set("offset", &offset, (float)-TWO_PI, (float)TWO_PI);
-    gui.add(strokeWeight.set("strokeWeight", &strokeWeight, 0.5f, 8.0f);
-    gui.add(alpha.set("alpha", &alpha, 0.0f, 255.0f);
-    gui.add(lerpRate.set("lerpRate", &lerpRate, 0.0f, 1.0f);
-    gui.add(contourSmoothness.add("contour smooth", &contourSmoothness, 1.0f, 10.0f);
-    gui.add("contour dilation", &contourDilation, 0.01f, 2.0f);
-
+    gui.add(minArea.set("minArea", 1000, 0, 0.1*640*480));
+    gui.add(maxArea.set("maxArea", 300000, 0, 640*480));
+    gui.add(color.set("color", ofColor(255), ofColor(0,0,0), ofColor(255,255,255,255)));
+    gui.add(numPoints.set("numPoints", 60, 1, 300));
+    gui.add(offset.set("offset", 0, -TWO_PI, TWO_PI));
+    gui.add(strokeWeight.set("strokeWeight", 1.0, 0.5, 8.0));
+    gui.add(alpha.set("alpha", 100, 0, 255));
+    gui.add(lerpRate.set("lerpRate", 0.1, 0.0, 1.0));
+    gui.add(smoothness.set("contour smooth", 2.0, 1.0, 10.0));
+    gui.setPosition(0, 0);
+    gui.loadFromFile("settings.xml");
 }
 
 void ofApp::update() {
@@ -92,54 +89,45 @@ void ofApp::update() {
             }
         }
     }
+
+    // clean up old users
+    map<int, Contour*>::iterator itu = users.begin();
+    while (itu != users.end()) {
+        bool foundUser = false;
+        for (auto e : eligibleUsers) {
+            if (e == itu->first) {
+                foundUser = true;
+            }
+        }
+        if (foundUser) {
+            ++itu;
+        }
+        else {
+            delete itu->second;
+            users.erase(itu++);
+        }
+    }
     
-    if (ofGetFrameNum() % frameSkip == 0 && eligibleUsers.size() > 0)
-    {
-        int labelToAdd = eligibleUsers[floor(ofRandom(eligibleUsers.size()))];
-        int maxAge = ofRandom(maxAgeMin, maxAgeMax);
-        int speed = ofRandom(speedMin, speedMax);
-        int length = ofRandom(lengthMin, lengthMax);
-        int skip = ofRandom(skipMin, skipMax);
-        int margin = ofRandom(marginMin, marginMax);
-        float noiseFactor = ofRandom(noiseFactorMin, noiseFactorMax);
-        float ageFactor = ofRandom(ageFactorMin, ageFactorMax);
-        float lineWidth = ofRandom(lineWidthMin, lineWidthMax);
-        int maxAlpha = ofRandom(maxAlphaMin, maxAlphaMax);
-        int updateRate = ofRandom(updateRateMin, updateRateMax);
-        float lerpRate = ofRandom(lerpRateMin, lerpRateMax);
-        int colorMargin = ofRandom(colorMarginMin, colorMarginMax);
-        Ribbon *ribbon = new Ribbon(users[labelToAdd], maxAge, speed, length, skip,
-                                    margin, noiseFactor, ageFactor,
-                                    lineWidth, maxAlpha, updateRate,
-                                    lerpRate, dilate, colorMargin, curved, match);
-        ribbons[users[labelToAdd]].push_back(ribbon);
+    
+    if (points.size() != numPoints) {
+        points.resize(numPoints);
+    }
+    
+    if (users.size() == 0) return;
+    
+    // draw the first contour only?
+    itu = users.begin();
+    Contour *c = itu->second;
+    for (int i=0; i<points.size(); i++) {
+        ofVec2f cPoint = c->points[ofMap(i, 0, points.size(), 0, c->points.size()-1)];
+        points[i].set(ofLerp(points[i].x, cPoint.x, lerpRate),
+                      ofLerp(points[i].y, cPoint.y, lerpRate)); //new PVector(lerp(pts[j].x, p2.x, LERP_RATE), lerp(pts[j].y, p2.y, LERP_RATE));
     }
     
     clean();
 }
 
 void ofApp::clean() {
-    
-    // remove old ribbons and contours
-    map<Contour*, vector<Ribbon*> >::iterator itc = ribbons.begin();
-    for (; itc != ribbons.end(); ++itc) {
-        vector<Ribbon*>::iterator itr = itc->second.begin();
-        while (itr != itc->second.end()) {
-            if (!(*itr)->getActive()) {
-                delete *itr;
-                itc->second.erase(itr);
-            }
-            else {
-                ++itr;
-            }
-        }
-        if (itc->second.size() == 0) {
-            delete users[itc->first->label];
-            users.erase(itc->first->label);
-            ribbons.erase(itc);
-        }
-    }
-    
     // trick to reset user generator in case all users are lose
     if (kinect.getNumTrackedUsers()) {
         hadUsers = true;
@@ -172,12 +160,16 @@ void ofApp::draw() {
     ofPushStyle();
     ofClear(0, 0);
     
-    map<Contour*, vector<Ribbon*> >::iterator it = ribbons.begin();
-    for (; it != ribbons.end(); ++it) {
-        for (auto r : it->second) {
-            r->update();
-            r->draw();
-        }
+    ofNoFill();
+    ofSetLineWidth(strokeWeight);
+    ofSetColor(color, alpha);
+    for (int i=0; i<points.size(); i++)
+    {
+        //float ang = (0.01*frameCount + map(j, 0, NUM_PTS, 0, TWO_PI)) % TWO_PI;
+        float ang = fmodf(ofMap(i, 0, points.size(), 0, TWO_PI) + offset, TWO_PI);
+        ofPoint ctr(projector.getWidth() / 2 + projector.getWidth() * cos(ang),
+                    projector.getHeight() / 2 + projector.getWidth() * sin(ang));
+        ofLine(ctr.x, ctr.y, points[i].x, points[i].y);
     }
     
     ofPopStyle();

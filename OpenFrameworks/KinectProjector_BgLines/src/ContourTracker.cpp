@@ -1,5 +1,40 @@
 #include "ContourTracker.h"
 
+
+Contour::Contour(vector<ofVec2f> & points, ofPoint center, int label)
+{
+    this->points = points;
+    this->center = center;
+    this->label = label;
+    age = 0;
+    color = ofColor(ofRandom(60,255), ofRandom(60,255), ofRandom(60,255));
+}
+
+void Contour::setPoints(vector<ofVec2f> & points, ofPoint center)
+{
+    this->points = points;
+    this->center = center;
+}
+
+int Contour::getNumPoints()
+{
+    return points.size();
+}
+
+void Contour::draw()
+{
+    ofPushStyle();
+    ofNoFill();
+    ofSetLineWidth(2);
+    ofSetColor(color);
+    ofBeginShape();
+    for (int j=0; j<points.size(); j++) {
+        ofVertex(points[j].x, points[j].y);
+    }
+    ofEndShape();
+    ofPopStyle();
+}
+
 void ContourTracker::setup()
 {
     
