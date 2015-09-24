@@ -1,0 +1,115 @@
+<Widget>
+    <Kind>4</Kind>
+    <Name>FPS SLIDER</Name>
+    <Value>19.668775558</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>generate/control</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>42</Kind>
+    <Name>totalParticles</Name>
+    <Value>200</Value>
+</Widget>
+<Widget>
+    <Kind>42</Kind>
+    <Name>maxParticles</Name>
+    <Value>1883</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>threshold</Name>
+    <Value>2.024291515</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>velMult</Name>
+    <Value>1.774412870</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>reverse</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>bounce</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>wrap</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>42</Kind>
+    <Name>attractionRadius</Name>
+    <Value>256</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>attractionForce</Name>
+    <Value>0.222672060</Value>
+</Widget>
+<Widget>
+    <Kind>42</Kind>
+    <Name>repulsionRadius</Name>
+    <Value>100</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>repulsionForce</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>baseSize</Name>
+    <Value>3.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>sizeMod</Name>
+    <Value>0.000100000</Value>
+</Widget>
+<Widget>
+    <Kind>42</Kind>
+    <Name>tailLength</Name>
+    <Value>5</Value>
+</Widget>
+<Widget>
+    <Kind>42</Kind>
+    <Name>alpha</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>circles</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>lines</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>red</Name>
+    <Value>1.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>green</Name>
+    <Value>1.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>blue</Name>
+    <Value>1.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>alpha</Name>
+    <Value>1.000000000</Value>
+</Widget>

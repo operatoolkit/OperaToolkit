@@ -1,0 +1,61 @@
+<Widget>
+    <Kind>4</Kind>
+    <Name>FPS SLIDER</Name>
+    <Value>30.454460144</Value>
+</Widget>
+<Widget>
+    <Kind>11</Kind>
+    <Name>position</Name>
+    <XValue>948.340087891</XValue>
+    <YValue>756.437255859</YValue>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>scale</Name>
+    <Value>0.688259065</Value>
+</Widget>
+<Widget>
+    <Kind>42</Kind>
+    <Name>scene</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>fadeAmt</Name>
+    <Value>255.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>flip?</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>bloom</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>rims</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>bloom2</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>dof</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>brightness</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>contrast</Name>
+    <Value>0.000000000</Value>
+</Widget>

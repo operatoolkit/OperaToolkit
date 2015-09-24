@@ -1,0 +1,65 @@
+<Widget>
+    <Kind>4</Kind>
+    <Name>FPS SLIDER</Name>
+    <Value>30.766857147</Value>
+</Widget>
+<Widget>
+    <Kind>42</Kind>
+    <Name>scene</Name>
+    <Value>2</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>bgred</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>bggreen</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>bgblue</Name>
+    <Value>0.129554659</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>fadeAmt</Name>
+    <Value>0.951417029</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>flip?</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>bloom</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>rims</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>bloom2</Name>
+    <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>17</Kind>
+    <Name>dof</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>brightness</Name>
+    <Value>1.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>contrast</Name>
+    <Value>1.000000000</Value>
+</Widget>
