@@ -36,6 +36,14 @@ Noisy ribbons tracing the contours around performers bodies.
 
 Tracing performers bodies on a wall with black and white lines around their contours. This is currently not working yet but will be soon.
 
+#### MirrorMesh
+
+Deforming your mesh -- to-do: make audioreactive.
+
+#### JasonDanceSystem
+
+Jason Levine's kinect-tracked visuals -- to-do: hook this up to ofxKinectProjectorToolkit.
+
 
 ### To-do:
 
