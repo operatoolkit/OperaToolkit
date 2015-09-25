@@ -1,0 +1,8 @@
+ofxGui
+ofxKinect
+ofxOpenCv
+ofxOsc
+ofxControl
+ofxCv
+ofxLayerMask
+ofxSecondWindow

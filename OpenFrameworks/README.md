@@ -44,6 +44,10 @@ Deforming your mesh -- to-do: make audioreactive.
 
 Jason Levine's kinect-tracked visuals -- to-do: hook this up to ofxKinectProjectorToolkit.
 
+#### Doppelganger
+
+Interact with your own shadow -- a copy of yourself which follows you around. This is currently buggy -- needs to be fixed.
+
 
 ### To-do:
 
