@@ -1,0 +1,13 @@
+<Preset>
+	<projectorWidth>890</projectorWidth>
+	<projectorHeight>595</projectorHeight>
+	<toProject>0</toProject>
+	<useUserImage>1</useUserImage>
+	<nearThreshold>255</nearThreshold>
+	<farThreshold>189.949</farThreshold>
+	<minArea>0</minArea>
+	<maxArea>150000</maxArea>
+	<smoothness>23</smoothness>
+	<tvWidth>42</tvWidth>
+	<tvHeight>209</tvHeight>
+</Preset>

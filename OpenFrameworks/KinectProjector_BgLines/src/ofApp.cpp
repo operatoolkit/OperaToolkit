@@ -1,6 +1,40 @@
 #include "ofApp.h"
 
 
+Contour::Contour(vector<ofVec2f> & points, ofPoint center, int label)
+{
+    this->points = points;
+    this->center = center;
+    this->label = label;
+    age = 0;
+    color = ofColor(ofRandom(60,255), ofRandom(60,255), ofRandom(60,255));
+}
+
+void Contour::setPoints(vector<ofVec2f> & points, ofPoint center)
+{
+    this->points = points;
+    this->center = center;
+}
+
+int Contour::getNumPoints()
+{
+    return points.size();
+}
+
+void Contour::draw()
+{
+    ofPushStyle();
+    ofNoFill();
+    ofSetLineWidth(2);
+    ofSetColor(color);
+    ofBeginShape();
+    for (int j=0; j<points.size(); j++) {
+        ofVertex(points[j].x, points[j].y);
+    }
+    ofEndShape();
+    ofPopStyle();
+}
+
 void ofApp::setup() {
     ofSetVerticalSync(true);
     ofSetWindowShape(1280, 960);
@@ -32,10 +66,13 @@ void ofApp::setup() {
     
     // setup gui
     gui.setup("backgrounding");
-    gui.add(minArea.set("minArea", 1000, 0, 0.1*640*480));
-    gui.add(maxArea.set("maxArea", 300000, 0, 640*480));
+    gui.add(useUserImage.set("useUserImage", true));
+    gui.add(nearThreshold.set("nearThreshold", 9, 0, 255));
+    gui.add(farThreshold.set("farThreshold", 0, 0, 255));
+    gui.add(minArea.set("minArea", 1000, 0, 5000));
+    gui.add(maxArea.set("maxArea", 70000, 15000, 150000));
     gui.add(color.set("color", ofColor(255), ofColor(0,0,0), ofColor(255,255,255,255)));
-    gui.add(numPoints.set("numPoints", 60, 1, 300));
+    gui.add(numPoints.set("numPoints", 150, 1, 300));
     gui.add(offset.set("offset", 0, -TWO_PI, TWO_PI));
     gui.add(strokeWeight.set("strokeWeight", 1.0, 0.5, 8.0));
     gui.add(alpha.set("alpha", 100, 0, 255));
@@ -57,58 +94,70 @@ void ofApp::update() {
     }
     
     depthPixels = kinect.getDepthRawPixels();
-    
     vector<int> eligibleUsers;
-    int numUsers = kinect.getNumTrackedUsers();
-    for (int i=0; i<numUsers; i++)
+    
+    if (useUserImage)
     {
-        ofxOpenNIUser & user = kinect.getTrackedUser(i);
-        if (!user.getMaskPixels().isAllocated()) {continue;}
+        int numUsers = kinect.getNumTrackedUsers();
+        for (int i=0; i<numUsers; i++)
+        {
+            ofxOpenNIUser & user = kinect.getTrackedUser(i);
+            if (!user.getMaskPixels().isAllocated()) {continue;}
+            
+            user.setMaskPixelFormat(OF_PIXELS_MONO);
+            grayImage.setFromPixels(user.getMaskPixels());
+            contourFinder.findContours(grayImage);
+            
+            if (contourFinder.size() == 0) {continue;}
+            eligibleUsers.push_back(user.getXnID());
+            
+            vector<ofVec2f> calibratedPoints;
+            getCalibratedContour(depthPixels, contourFinder.getContour(0), calibratedPoints);
+            
+            if (!users.count(user.getXnID())) {
+                users[user.getXnID()] = new Contour(calibratedPoints, toOf(contourFinder.getCenter(0)), user.getXnID());
+            }
+            else {
+                users[user.getXnID()]->setPoints(calibratedPoints, toOf(contourFinder.getCenter(0)));
+            }
+            
+            for (int j=1; j<contourFinder.size(); j++) {
+                if (contourFinder.getContour(j).size() > users[user.getXnID()]->getNumPoints()) {
+                    getCalibratedContour(depthPixels, contourFinder.getContour(j), calibratedPoints);
+                    users[user.getXnID()]->setPoints(calibratedPoints, toOf(contourFinder.getCenter(j)));
+                }
+            }
+        }
+    }
+    else
+    {
+        grayImage.setFromPixels(kinect.getDepthRawPixels());
+        grayThreshNear = grayImage;
+        grayThreshFar = grayImage;
+        grayThreshNear.threshold(nearThreshold, true);
+        grayThreshFar.threshold(farThreshold);
+        cvAnd(grayThreshNear.getCvImage(), grayThreshFar.getCvImage(), grayImage.getCvImage(), NULL);
+        grayImage.flagImageChanged();
         
-        user.setMaskPixelFormat(OF_PIXELS_MONO);
-        grayImage.setFromPixels(user.getMaskPixels());
+        // determine found contours
         contourFinder.findContours(grayImage);
         
-        if (contourFinder.size() == 0) {continue;}
-        eligibleUsers.push_back(user.getXnID());
-        
-        vector<ofVec2f> calibratedPoints;
-        getCalibratedContour(depthPixels, contourFinder.getContour(0), calibratedPoints);
-        
-        if (!users.count(user.getXnID())) {
-            users[user.getXnID()] = new Contour(calibratedPoints, toOf(contourFinder.getCenter(0)), user.getXnID());
-        }
-        else {
-            users[user.getXnID()]->setPoints(calibratedPoints, toOf(contourFinder.getCenter(0)));
-        }
-        
-        for (int j=1; j<contourFinder.size(); j++) {
-            if (contourFinder.getContour(j).size() > users[user.getXnID()]->getNumPoints()) {
-                getCalibratedContour(depthPixels, contourFinder.getContour(j), calibratedPoints);
-                users[user.getXnID()]->setPoints(calibratedPoints, toOf(contourFinder.getCenter(j)));
+        for(int i = 0; i < contourFinder.size(); i++) {
+            vector<cv::Point> points = contourFinder.getContour(i);
+            int label = contourFinder.getLabel(i);
+            eligibleUsers.push_back(label);
+            
+            vector<ofVec2f> calibratedPoints;
+            getCalibratedContour(depthPixels, points, calibratedPoints);
+            if (!users.count(label)) {
+                users[label] = new Contour(calibratedPoints, toOf(contourFinder.getCenter(i)), label);
+            }
+            else {
+                users[label]->setPoints(calibratedPoints, toOf(contourFinder.getCenter(i)));
             }
         }
     }
 
-    // clean up old users
-    map<int, Contour*>::iterator itu = users.begin();
-    while (itu != users.end()) {
-        bool foundUser = false;
-        for (auto e : eligibleUsers) {
-            if (e == itu->first) {
-                foundUser = true;
-            }
-        }
-        if (foundUser) {
-            ++itu;
-        }
-        else {
-            delete itu->second;
-            users.erase(itu++);
-        }
-    }
-    
-    
     if (points.size() != numPoints) {
         points.resize(numPoints);
     }
@@ -116,7 +165,7 @@ void ofApp::update() {
     if (users.size() == 0) return;
     
     // draw the first contour only?
-    itu = users.begin();
+    map<int, Contour*>::iterator itu = users.begin();
     Contour *c = itu->second;
     for (int i=0; i<points.size(); i++) {
         ofVec2f cPoint = c->points[ofMap(i, 0, points.size(), 0, c->points.size()-1)];
@@ -124,6 +173,24 @@ void ofApp::update() {
                       ofLerp(points[i].y, cPoint.y, lerpRate)); //new PVector(lerp(pts[j].x, p2.x, LERP_RATE), lerp(pts[j].y, p2.y, LERP_RATE));
     }
     
+    // get rid of old contours
+    itu = users.begin();
+    while (itu != users.end()) {
+        bool found = false;
+        for (auto e : eligibleUsers) {
+            if (e == itu->first) {
+                found = true;
+            }
+        }
+        if (!found) {
+            delete itu->second;
+            users.erase(itu++);
+        }
+        else {
+            ++itu;
+        }
+    }
+
     clean();
 }
 
@@ -149,6 +216,8 @@ void ofApp::draw() {
     ofTranslate(640, 0);
     kinect.drawDepth();
     kinect.drawSkeletons();
+    ofTranslate(-640, 480);
+    grayImage.draw(0, 0);
     ofPopStyle();
     ofPopMatrix();
     gui.draw();

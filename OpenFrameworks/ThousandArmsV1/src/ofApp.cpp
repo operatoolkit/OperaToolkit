@@ -89,8 +89,6 @@ void ofApp::update() {
             masker.draw();
 
             fbo[indexDraw].end();
-            
-            
         }
     }
     
@@ -125,11 +123,11 @@ void ofApp::draw() {
         for (int i=0; i < numImages; i++)
         {
             int idx = (indexImage + i * imageSkip) % fbo.size();
-            
+            /*
             ofSetColor(ofMap(sin(0.011*ofGetFrameNum()+5 + 4*i), -1, 1, 0, 255),
                        ofMap(sin(0.013*ofGetFrameNum()+10 + 5*i), -1, 1, 0, 255),
                        ofMap(sin(0.017*ofGetFrameNum()+20 + 6*i), -1, 1, 0, 255));
-            
+            */
             fbo[idx].draw(0, 0);
         }
         indexImage = (indexImage + frameSkip) % fbo.size();

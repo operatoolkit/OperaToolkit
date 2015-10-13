@@ -7,14 +7,12 @@
 #include "ofxOpenNI.h"
 #include "ofxSecondWindow.h"
 #include "ofxKinectProjectorToolkit.h"
-
-#include "ContourTracker.h"
 #include "Ribbons.h"
 
 
 // this must match the display resolution of your projector
 #define PROJECTOR_RESOLUTION_X 1280
-#define PROJECTOR_RESOLUTION_Y 800
+#define PROJECTOR_RESOLUTION_Y 1024
 
 using namespace ofxCv;
 using namespace cv;
@@ -40,9 +38,14 @@ private:
     ofxKinectProjectorToolkit kpt;
     ofShortPixels depthPixels;
     ofxCvGrayscaleImage grayImage;
+    ofxCvGrayscaleImage grayThreshNear;
+    ofxCvGrayscaleImage grayThreshFar;
     ofxCv::ContourFinder contourFinder;
     bool hadUsers;
     
+    ofParameter<bool> useUserImage;
+    ofParameter<float> nearThreshold;
+    ofParameter<float> farThreshold;
     ofParameter<float> minArea;
     ofParameter<float> maxArea;
     ofParameter<int> smoothness;

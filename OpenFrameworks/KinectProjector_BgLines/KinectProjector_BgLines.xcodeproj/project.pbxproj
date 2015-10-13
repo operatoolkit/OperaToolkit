@@ -30,7 +30,6 @@
 		A6668C5B1272D7FCD5B5A16F /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6CEC50DB3D06414010233963 /* Utilities.cpp */; };
 		A81AF6FC4B1FD63D16781582 /* unicode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751648C5D0FFBBB967F90216 /* unicode.cpp */; };
 		B08562AB1BA38B0200F3945D /* libOpenNI.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B08562A01BA38AF400F3945D /* libOpenNI.dylib */; };
-		B085634F1BA3920B00F3945D /* ContourTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B085634D1BA3920B00F3945D /* ContourTracker.cpp */; };
 		B266578FC55D23BFEBC042E7 /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ECF8674C7975F1063C5E30CA /* ofxGuiGroup.cpp */; };
 		B56FE57CC35806596D38118C /* ofxSliderGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 802251BAF1B35B1D67B32FD0 /* ofxSliderGroup.cpp */; };
 		B6840996567E78436F7ECFAB /* ETF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B047FF96258DC01792B272DB /* ETF.cpp */; };
@@ -390,8 +389,6 @@
 		B08562A81BA38AF400F3945D /* libXnVFeatures_1_5_2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libXnVFeatures_1_5_2.dylib; sourceTree = "<group>"; };
 		B08562A91BA38AF400F3945D /* libXnVHandGenerator_1_5_2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libXnVHandGenerator_1_5_2.dylib; sourceTree = "<group>"; };
 		B08562AA1BA38AF400F3945D /* libXnVNite_1_5_2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libXnVNite_1_5_2.dylib; sourceTree = "<group>"; };
-		B085634D1BA3920B00F3945D /* ContourTracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ContourTracker.cpp; sourceTree = "<group>"; };
-		B085634E1BA3920B00F3945D /* ContourTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContourTracker.h; sourceTree = "<group>"; };
 		B1E998B893F7E4148F66A475 /* matrix_assign.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = matrix_assign.h; path = ../../../addons/ofxKinectProjectorToolkit/libs/dlib/matrix/matrix_assign.h; sourceTree = SOURCE_ROOT; };
 		B2B3CC2C074F2E95CED241D8 /* windows_magic.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = windows_magic.h; path = ../../../addons/ofxKinectProjectorToolkit/libs/dlib/windows_magic.h; sourceTree = SOURCE_ROOT; };
 		B5E6B871EEE8436AD0DF95DA /* matrix_conv_abstract.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = matrix_conv_abstract.h; path = ../../../addons/ofxKinectProjectorToolkit/libs/dlib/matrix/matrix_conv_abstract.h; sourceTree = SOURCE_ROOT; };
@@ -1388,8 +1385,6 @@
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
-				B085634D1BA3920B00F3945D /* ContourTracker.cpp */,
-				B085634E1BA3920B00F3945D /* ContourTracker.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -1544,7 +1539,6 @@
 				E212C821D1064B92DD953A42 /* ofxCvHaarFinder.cpp in Sources */,
 				63020F16C7E8DED980111241 /* ofxCvImage.cpp in Sources */,
 				D3301F6A0B43BB293ED97C1D /* ofxCvShortImage.cpp in Sources */,
-				B085634F1BA3920B00F3945D /* ContourTracker.cpp in Sources */,
 				B6840996567E78436F7ECFAB /* ETF.cpp in Sources */,
 				F76B4A79BD8DE4854141CB47 /* fdog.cpp in Sources */,
 				EBCDE831EFAE08274E799C97 /* Calibration.cpp in Sources */,

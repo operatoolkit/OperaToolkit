@@ -1360,12 +1360,12 @@
 		B01236D21BAF1C98006F4655 /* managers */ = {
 			isa = PBXGroup;
 			children = (
-				B01236D31BAF1C98006F4655 /* flowManager.cpp */,
-				B01236D41BAF1C98006F4655 /* flowManager.h */,
 				B01236D51BAF1C98006F4655 /* openNIManager.cpp */,
 				B01236D61BAF1C98006F4655 /* openNIManager.h */,
 				B01236D71BAF1C98006F4655 /* postProcManager.cpp */,
 				B01236D81BAF1C98006F4655 /* postProcManager.h */,
+				B01236D31BAF1C98006F4655 /* flowManager.cpp */,
+				B01236D41BAF1C98006F4655 /* flowManager.h */,
 			);
 			path = managers;
 			sourceTree = "<group>";

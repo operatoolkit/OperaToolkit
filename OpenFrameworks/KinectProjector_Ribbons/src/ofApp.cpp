@@ -6,8 +6,8 @@ void ofApp::setup() {
     ofSetWindowShape(1280, 960);
     
     // set up kinect
-    kinect.setup();
-    //kinect.setupFromONI("/Users/gene/Code/of_v0.8-4.4_osx_release/templates_old/Kinect/openni_oniRecording/bin/data/alecsroom.oni");
+    //kinect.setup();
+    kinect.setupFromONI("/Users/gene/Code/of_v0.8-4.4_osx_release/templates_old/Kinect/openni_oniRecording/bin/data/alecsroom.oni");
     //kinect.setupFromONI("/Users/gene/Desktop/oni/2012-06-25-14-08-00-860.oni");
     
     kinect.addImageGenerator();
@@ -27,11 +27,14 @@ void ofApp::setup() {
     kpt.loadCalibration("/Users/Gene/Desktop/calibration.xml");
     
     // setup projection window
-    projector.setup("main", 0, 0, PROJECTOR_RESOLUTION_X, PROJECTOR_RESOLUTION_Y, false);
-    //projector.setup("main", ofGetScreenWidth(), 0, PROJECTOR_RESOLUTION_X, PROJECTOR_RESOLUTION_Y, true);
+    projector.setup("main", 0, 0, PROJECTOR_RESOLUTION_X/2, PROJECTOR_RESOLUTION_Y/2, false);
+//    projector.setup("main", ofGetScreenWidth(), 0, PROJECTOR_RESOLUTION_X, PROJECTOR_RESOLUTION_Y, true);
     
     // setup gui
     gui.setup("parameters");
+    gui.add(useUserImage.set("useUserImage", true));
+    gui.add(nearThreshold.set("nearThreshold", 9, 0, 255));
+    gui.add(farThreshold.set("farThreshold", 0, 0, 255));
     gui.add(minArea.set("minArea", 1000, 0, 5000));
     gui.add(maxArea.set("maxArea", 70000, 15000, 150000));
     gui.add(smoothness.set("smoothness", 3, 1, 30));
@@ -68,10 +71,11 @@ void ofApp::setup() {
     gui.loadFromFile("settings.xml");
 }
 
+
 void ofApp::update() {
     contourFinder.setMinArea(minArea);
     contourFinder.setMaxArea(maxArea);
-    
+
     kinect.update();
     
     if(!kinect.isNewFrame()) {
@@ -80,39 +84,71 @@ void ofApp::update() {
     }
     
     depthPixels = kinect.getDepthRawPixels();
-    
     vector<int> eligibleUsers;
-    int numUsers = kinect.getNumTrackedUsers();
-    for (int i=0; i<numUsers; i++)
+    
+    if (useUserImage)
     {
-        ofxOpenNIUser & user = kinect.getTrackedUser(i);
-        if (!user.getMaskPixels().isAllocated()) {continue;}
+        int numUsers = kinect.getNumTrackedUsers();
+        for (int i=0; i<numUsers; i++)
+        {
+            ofxOpenNIUser & user = kinect.getTrackedUser(i);
+            if (!user.getMaskPixels().isAllocated()) {continue;}
+            
+            user.setMaskPixelFormat(OF_PIXELS_MONO);
+            grayImage.setFromPixels(user.getMaskPixels());
+            contourFinder.findContours(grayImage);
+            
+            if (contourFinder.size() == 0) {continue;}
+            eligibleUsers.push_back(user.getXnID());
+            
+            vector<ofVec2f> calibratedPoints;
+            getCalibratedContour(depthPixels, contourFinder.getContour(0), calibratedPoints);
+            
+            if (!users.count(user.getXnID())) {
+                users[user.getXnID()] = new Contour(calibratedPoints, toOf(contourFinder.getCenter(0)), user.getXnID());
+            }
+            else {
+                users[user.getXnID()]->setPoints(calibratedPoints, toOf(contourFinder.getCenter(0)));
+            }
+            
+            for (int j=1; j<contourFinder.size(); j++) {
+                if (contourFinder.getContour(j).size() > users[user.getXnID()]->getNumPoints()) {
+                    getCalibratedContour(depthPixels, contourFinder.getContour(j), calibratedPoints);
+                    users[user.getXnID()]->setPoints(calibratedPoints, toOf(contourFinder.getCenter(j)));
+                }
+            }
+        }
+    }
+    else
+    {
+        grayImage.setFromPixels(kinect.getDepthRawPixels());
+        grayThreshNear = grayImage;
+        grayThreshFar = grayImage;
+        grayThreshNear.threshold(nearThreshold, true);
+        grayThreshFar.threshold(farThreshold);
+        cvAnd(grayThreshNear.getCvImage(), grayThreshFar.getCvImage(), grayImage.getCvImage(), NULL);
+        grayImage.flagImageChanged();
         
-        user.setMaskPixelFormat(OF_PIXELS_MONO);
-        grayImage.setFromPixels(user.getMaskPixels());
+        // determine found contours
         contourFinder.findContours(grayImage);
         
-        if (contourFinder.size() == 0) {continue;}
-        eligibleUsers.push_back(user.getXnID());
-        
-        vector<ofVec2f> calibratedPoints;
-        getCalibratedContour(depthPixels, contourFinder.getContour(0), calibratedPoints);
-        
-        if (!users.count(user.getXnID())) {
-            users[user.getXnID()] = new Contour(calibratedPoints, toOf(contourFinder.getCenter(0)), user.getXnID());
-        }
-        else {
-            users[user.getXnID()]->setPoints(calibratedPoints, toOf(contourFinder.getCenter(0)));
-        }
-        
-        for (int j=1; j<contourFinder.size(); j++) {
-            if (contourFinder.getContour(j).size() > users[user.getXnID()]->getNumPoints()) {
-                getCalibratedContour(depthPixels, contourFinder.getContour(j), calibratedPoints);
-                users[user.getXnID()]->setPoints(calibratedPoints, toOf(contourFinder.getCenter(j)));
+        for(int i = 0; i < contourFinder.size(); i++) {
+            vector<cv::Point> points = contourFinder.getContour(i);
+            int label = contourFinder.getLabel(i);
+            eligibleUsers.push_back(label);
+            
+            vector<ofVec2f> calibratedPoints;
+            getCalibratedContour(depthPixels, points, calibratedPoints);
+            if (!users.count(label)) {
+                users[label] = new Contour(calibratedPoints, toOf(contourFinder.getCenter(i)), label);
+            }
+            else {
+                users[label]->setPoints(calibratedPoints, toOf(contourFinder.getCenter(i)));
             }
         }
     }
     
+    // update ribbons
     if (ofGetFrameNum() % frameSkip == 0 && eligibleUsers.size() > 0)
     {
         int labelToAdd = eligibleUsers[floor(ofRandom(eligibleUsers.size()))];
@@ -139,7 +175,6 @@ void ofApp::update() {
 }
 
 void ofApp::clean() {
-    
     // remove old ribbons and contours
     map<Contour*, vector<Ribbon*> >::iterator itc = ribbons.begin();
     for (; itc != ribbons.end(); ++itc) {
@@ -181,6 +216,8 @@ void ofApp::draw() {
     ofTranslate(640, 0);
     kinect.drawDepth();
     kinect.drawSkeletons();
+    ofTranslate(-640, 480);
+    grayImage.draw(0, 0);
     ofPopStyle();
     ofPopMatrix();
     gui.draw();

@@ -29,7 +29,6 @@
 		89D91BBAE9596D6E30AA6E35 /* ofxOpenNI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12B3CD0D48AD549F971EB586 /* ofxOpenNI.cpp */; };
 		A6668C5B1272D7FCD5B5A16F /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6CEC50DB3D06414010233963 /* Utilities.cpp */; };
 		A81AF6FC4B1FD63D16781582 /* unicode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 751648C5D0FFBBB967F90216 /* unicode.cpp */; };
-		B085615B1BA3838800F3945D /* ContourTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B08561591BA3838800F3945D /* ContourTracker.cpp */; };
 		B085615E1BA3839400F3945D /* Ribbons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B085615C1BA3839400F3945D /* Ribbons.cpp */; };
 		B08561F91BA383F200F3945D /* libOpenNI.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B08561EE1BA383A900F3945D /* libOpenNI.dylib */; };
 		B266578FC55D23BFEBC042E7 /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ECF8674C7975F1063C5E30CA /* ofxGuiGroup.cpp */; };
@@ -248,8 +247,6 @@
 		AF32EEE2A36AAAD543E5D3E3 /* matrix_conj_trans.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = matrix_conj_trans.h; path = ../../../addons/ofxKinectProjectorToolkit/libs/dlib/matrix/matrix_conj_trans.h; sourceTree = SOURCE_ROOT; };
 		AF9A155219FEDFA6E95454EA /* gpu.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = gpu.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/gpu/gpu.hpp; sourceTree = SOURCE_ROOT; };
 		B047FF96258DC01792B272DB /* ETF.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ETF.cpp; path = ../../../addons/ofxCv/libs/CLD/src/ETF.cpp; sourceTree = SOURCE_ROOT; };
-		B08561591BA3838800F3945D /* ContourTracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ContourTracker.cpp; sourceTree = "<group>"; };
-		B085615A1BA3838800F3945D /* ContourTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContourTracker.h; sourceTree = "<group>"; };
 		B085615C1BA3839400F3945D /* Ribbons.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ribbons.cpp; sourceTree = "<group>"; };
 		B085615D1BA3839400F3945D /* Ribbons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ribbons.h; sourceTree = "<group>"; };
 		B08561611BA383A800F3945D /* libusb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libusb.h; sourceTree = "<group>"; };
@@ -1391,8 +1388,6 @@
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
-				B08561591BA3838800F3945D /* ContourTracker.cpp */,
-				B085615A1BA3838800F3945D /* ContourTracker.h */,
 				B085615C1BA3839400F3945D /* Ribbons.cpp */,
 				B085615D1BA3839400F3945D /* Ribbons.h */,
 			);
@@ -1549,7 +1544,6 @@
 				E212C821D1064B92DD953A42 /* ofxCvHaarFinder.cpp in Sources */,
 				63020F16C7E8DED980111241 /* ofxCvImage.cpp in Sources */,
 				D3301F6A0B43BB293ED97C1D /* ofxCvShortImage.cpp in Sources */,
-				B085615B1BA3838800F3945D /* ContourTracker.cpp in Sources */,
 				B6840996567E78436F7ECFAB /* ETF.cpp in Sources */,
 				B085615E1BA3839400F3945D /* Ribbons.cpp in Sources */,
 				F76B4A79BD8DE4854141CB47 /* fdog.cpp in Sources */,
