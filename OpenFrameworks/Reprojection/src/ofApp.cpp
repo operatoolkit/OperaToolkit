@@ -11,9 +11,9 @@ void ofApp::setup(){
     fbo.allocate(img.getWidth(), img.getHeight());
     projection.addQuad(img.getWidth(), img.getHeight());
     projection.loadPreset("mapping.xml");
-    shader.load("/Users/gene/Projects/OperaToolkit/Media/Workshop_8.20.2015/VertexFields/data/shaders/standard.vert", "/Users/gene/Projects/OperaToolkit/Media/Workshop_8.20.2015/VertexFields/data/shaders_texture/brcosa.frag");
+    shader.load("standard.vert", "brcosa.frag");
 
-    gui.setup("reporject");
+    gui.setup("reproject");
     gui.add(brightness.set("brightness", 1.0, 0.0, 5.0));
     gui.add(saturation.set("saturation", 1.0, -5.0, 5.0));
     gui.add(contrast.set("contrast", 1.0, -5.0, 5.0));
