@@ -1,3 +1,4 @@
+
 #include "ProjectionMapping.h"
 
 
@@ -10,12 +11,14 @@ Quad::Quad()
 
 void Quad::begin()
 {
-    quad.beginDraw();
+    homography = ofxHomography::findHomography(inputCorners, outputCorners);
+    ofPushMatrix();
+    glMultMatrixf(homography.getPtr());
 }
 
 void Quad::end()
 {
-    quad.endDraw();
+    ofPopMatrix();
     if (debugging) {
         drawDebug();
     }
@@ -42,34 +45,32 @@ void Quad::drawDebug()
     }
     ofNoFill();
     ofBeginShape();
-    ofVertex(quad.getOutputPoint(0).x, quad.getOutputPoint(0).y);
-    ofVertex(quad.getOutputPoint(1).x, quad.getOutputPoint(1).y);
-    ofVertex(quad.getOutputPoint(2).x, quad.getOutputPoint(2).y);
-    ofVertex(quad.getOutputPoint(3).x, quad.getOutputPoint(3).y);
+    ofVertex(outputCorners[0].x, outputCorners[0].y);
+    ofVertex(outputCorners[1].x, outputCorners[1].y);
+    ofVertex(outputCorners[2].x, outputCorners[2].y);
+    ofVertex(outputCorners[3].x, outputCorners[3].y);
     ofEndShape(close);
     ofPopStyle();
 }
 
 ofPoint Quad::getInputCorner(int idx)
 {
-    ofPoint pp = quad.getInputPoint(idx);
-    return quad.getInputPoint(idx);
+    return inputCorners[idx];
 }
 
 ofPoint Quad::getOutputCorner(int idx)
 {
-    ofPoint pp = quad.getOutputPoint(idx);
-    return quad.getOutputPoint(idx);
+    return outputCorners[idx];
 }
 
 void Quad::setInputCorner(int idx, int x, int y)
 {
-    quad.setInputPoint(idx, x, y);
+    inputCorners[idx].set(x, y);
 }
 
 void Quad::setOutputCorner(int idx, int x, int y)
 {
-    quad.setOutputPoint(idx, x, y);
+    outputCorners[idx].set(x, y);
 }
 
 void Quad::moveOutputCorner(int x, int y)
@@ -86,7 +87,7 @@ void Quad::moveOutputCorner(int x, int y)
     }
     else if (selectedCorner >= 0)
     {
-        quad.setOutputPoint(selectedCorner, x, y);
+        outputCorners[selectedCorner].set(x, y);
     }
 }
 
@@ -95,10 +96,9 @@ void Quad::grabOutputCorner(int x, int y)
     selectedCorner = -1;
     int minDist = 25;
     for (int i=0; i<4; i++) {
-        ofPoint c = quad.getOutputPoint(i);
-        if (abs(ofDist(c.x, c.y, x, y)) < minDist) {
+        if (abs(ofDist(outputCorners[i].x, outputCorners[i].y, x, y)) < minDist) {
             selectedCorner = i;
-            minDist = abs(ofDist(c.x, c.y, x, y));
+            minDist = abs(ofDist(outputCorners[i].x, outputCorners[i].y, x, y));
         }
     }
     // if no corners found, see if grabbing the whole quad
