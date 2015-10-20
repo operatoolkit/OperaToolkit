@@ -5,14 +5,14 @@ void ofApp::setup(){
     ofSetVerticalSync(true);
     ofSetFullscreen(true);
     
-    img.loadImage("/Users/gene/Downloads/lisa-painting2.jpg");
+    img.loadImage("/Users/gene/Code/of_v0.8-4.4_osx_release/addons/ofxHomography/example/bin/data/harvey_resized.jpg");
     //img.resize(500, 500);
     
     fbo.allocate(img.getWidth(), img.getHeight());
     projection.addQuad(img.getWidth(), img.getHeight());
     projection.loadPreset("mapping.xml");
     shader.load("standard.vert", "brcosa.frag");
-
+    
     gui.setup("reproject");
     gui.add(brightness.set("brightness", 1.0, 0.0, 5.0));
     gui.add(saturation.set("saturation", 1.0, -5.0, 5.0));
@@ -62,40 +62,40 @@ void ofApp::keyPressed(int key){
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg){
-
+    
 }
 
 //--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){ 
-
+void ofApp::dragEvent(ofDragInfo dragInfo){
+    
 }

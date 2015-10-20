@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxQuad.h"
+#include "ofxHomography.h"
 
 
 
@@ -30,8 +30,14 @@ private:
     
     bool debugging, debugMe;
     int selectedCorner;
-    ofxQuad quad;
+//    ofxQuad quad;
     ofPoint lastGrabbedPoint;
+    
+    
+    ofPoint inputCorners[4];
+    ofPoint outputCorners[4];
+    ofMatrix4x4 homography;
+
 };
 
 
