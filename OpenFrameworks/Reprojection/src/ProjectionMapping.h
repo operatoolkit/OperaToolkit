@@ -30,14 +30,10 @@ private:
     
     bool debugging, debugMe;
     int selectedCorner;
-//    ofxQuad quad;
     ofPoint lastGrabbedPoint;
-    
-    
     ofPoint inputCorners[4];
     ofPoint outputCorners[4];
     ofMatrix4x4 homography;
-
 };
 
 
